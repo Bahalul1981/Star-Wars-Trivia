@@ -1,5 +1,5 @@
 
-// Jag skapade en class condtructor here
+// class constractor
 
 class Strcharaters{
 
@@ -16,14 +16,19 @@ class Strcharaters{
 
 }
 
-// DOM
+// DOM List
+
 let displayResut=document.getElementById("datafrom")
 let displayResut2=document.getElementById("datafrom2")
 let button=document.getElementById("Compare")
 let firstimg=document.getElementById("firstimg")
 let secondimg=document.getElementById("secondimg")
 let displaybutton=document.getElementById("button")
-let displaynewcompareinfo=document.getElementById("displaynewcompareinfo")
+let compareinfo1=document.querySelector(".compareinfo1")
+let compareinfo2=document.querySelector(".compareinfo2")
+let kar1=document.getElementById("kar1")
+let kar2=document.getElementById("kar2")
+
 
 
 
@@ -31,6 +36,7 @@ let displaynewcompareinfo=document.getElementById("displaynewcompareinfo")
 // Fetch API
 
 button.addEventListener("click",fetchFunction)
+
 
  async function fetchFunction(){
    
@@ -45,18 +51,18 @@ button.addEventListener("click",fetchFunction)
 
       const charactor1 =new Strcharaters(newResponse.name,newResponse.gender,newResponse.height,newResponse.mass,newResponse.hair_color);
       const charactor2 =new Strcharaters(newResponse2.name,newResponse2.gender,newResponse2.height,newResponse2.mass,newResponse2.hair_color);
-    //   displayResut.innerHTML= `Name: ${newResponse.name}<br><br>`
-    //   displayResut2.innerHTML= `Name: ${newResponse2.name}<br><br>`
+    
+    
 
-    //   displayResut.innerHTML=`Name: ${newResponse.name}<br>Gender: ${newResponse.gender} <br>Height: ${newResponse.height} <br>Mass: ${newResponse.mass}<br>Hair color: ${newResponse.hair_color}`
+    
 
-
-     //Skapt "Button" för Charakter-1
      if(charId1==charId2){
          alert("Du får inte jämföra samma karektär.Gärna välj olika karäkter")
        return false
+
      }
-    
+     
+   
 
       const creatbutto1=document.createElement("button")
       creatbutto1.innerText="Vikt"
@@ -72,33 +78,19 @@ button.addEventListener("click",fetchFunction)
       displayResut.appendChild(creatbutto4)
       
       
-    //   creatbutto1.addEventListener("click",compareHight())
-
-    
-    //    const newelem= document.createElement("p")
-    //    newelem.innerText= `Name: ${newResponse.height-newResponse2.height}`
-    //    displayResut.appendChild(newelem)
-
+  
 
         function characterOneInfo(){
         const newelem=document.createElement("p")
         newelem.innerHTML=`Name: ${newResponse.name}<br>Gender: ${newResponse.gender}<br>Height: ${newResponse.height}<br>Mass: ${newResponse.mass}<br>Hair-colo: ${newResponse.hair_color}`
         displayResut.appendChild(newelem)
 
-        // if(newResponse.height>newResponse2.height){
-        //    newelem.innerHTML=`I am ${newResponse.height-newResponse2.height} cm. taller then him` 
-        // }
-        // if(newResponse.height<newResponse2.height){
-        //     newelem.innerHTML=`I am ${newResponse.height-newResponse2.height} cm. smoler then him` 
-        // }
-        // else{
-        //     newelem.innerHTML=" we are same hight"
-        // }
+       
 
     }
     characterOneInfo()
 
-    //compare height
+   
    
     
 
@@ -123,46 +115,143 @@ button.addEventListener("click",fetchFunction)
 
     function characterTwoInfo(){
         const twoelem=document.createElement("p")
-        twoelem.innerHTML=`Name: ${newResponse2.name}<br>Gender: ${newResponse2.gender}<br>Height: ${newResponse2.height}<br>Mass: ${newResponse2.mass}<br>Hair-colo: ${newResponse.hair_color}`
+        twoelem.innerHTML=`Name: ${newResponse2.name}<br>Gender: ${newResponse2.gender}<br>Height: ${newResponse2.height}<br>Mass: ${newResponse2.mass}<br>Hair-colo: ${newResponse2.hair_color}`
         displayResut2.appendChild(twoelem)
     }
     characterTwoInfo()
    
 
-      
+     
+    // Jämföra höjd
+    
     creatbutto2.addEventListener("click",()=>{
-        const character1height=newResponse.height
-        const character2height=newResponse2.height
+        
+        if(newResponse.height===newResponse2.height){
+            compareinfo1.innerHTML=`${newResponse2.name} and me, we have same hight. That is: ${newResponse2.height} m`
 
-        if(character1height>character2height){
-        displaynewcompareinfo.innerHTML=`I am: ${character1height-character2height} cm. bigger then him`   
         }
-        if(character1height<character2height){
-            displaynewcompareinfo.innerHTML=`I am: ${character2height-newResponse.height} cm. smaller then him`
+        else if(newResponse.height<newResponse2.height){
+            compareinfo1.innerHTML=`${newResponse2.name} hight is ${newResponse2.height} m. and that is ${newResponse2.height-newResponse.height} m. more then me`
         }
+
+        else if(newResponse.height>newResponse2.height){
+            compareinfo1.innerHTML= `${newResponse2.name} hight is ${newResponse2.height} m. and that is ${newResponse.height-newResponse2.height} m. less then me`  
+        }
+        
 
         
     })
 
     creatbutto6.addEventListener("click",()=>{
-        const character2height=newResponse2.height
-            
-    })
         
-    //     if(`${newResponse.height>newResponse2.height}`){
-    //         displaynewcompareinfo.innerHTML=`I am: ${newResponse2.height-newResponse.height}cm. bigger then him`
-            
-    //     }
-    // //    if(newResponse.height<newResponse2.height){
-    //     else{
-    //     displaynewcompareinfo.innerHTML=`I am: ${newResponse2.height-newResponse.height}cm. smaller then him`
-    //    }
-       
+        if(newResponse.height===newResponse2.height){
+            compareinfo2.innerHTML=`${newResponse2.name} and me, we have same hight. That is: ${newResponse2.height} m`
 
+        }
+        else if(newResponse.height>newResponse2.height){
+            compareinfo2.innerHTML=`${newResponse.name} hight is ${newResponse.height} m. and that is ${newResponse.height-newResponse2.height} m. more then me`
+        }
+
+        else if(newResponse.height<newResponse2.height){
+            compareinfo2.innerHTML= `${newResponse.name} hight is ${newResponse.height} m. and that is ${newResponse2.height-newResponse.height} m. less then me`  
+        }
+        
+
+        
+    })
+
+    
+
+    // Jämföra vikt
+    creatbutto1.addEventListener("click",()=>{
+        
+
+        if(newResponse.mass===newResponse2.mass){
+            compareinfo1.innerHTML=`${newResponse2.name} weighs ${newResponse2.mass}kg. The same weight as me!`
+             
+        }
+        else if(newResponse.mass<newResponse2.mass){
+            compareinfo1.innerHTML=`${newResponse2.name} weighs ${newResponse2.mass}kg. That's ${newResponse.mass - newResponse2.mass} kg less than me.`
+        }
+        else {
+            compareinfo1.innerHTML=`${newResponse2.name} weighs ${newResponse2.mass} kg. That's  ${newResponse2.mass - newResponse.mass } kg more than me.`; 
+
+        } 
+
+        
+    })
+
+    creatbutto5.addEventListener("click",()=>{
+
+        if(newResponse2.mass===newResponse.mass){
+            compareinfo2.innerHTML=`${newResponse.name} weighs ${newResponse.mass}kg. The same weight as me!`
+             
+        }
+        else if(newResponse2.mass<newResponse.mass){
+            compareinfo2.innerHTML=`${newResponse.name} weighs ${newResponse.mass}kg. That's ${newResponse2.mass - newResponse.mass} kg less than me.`
+        }
+        else {
+            compareinfo2.innerHTML=`${newResponse.name} weighs ${newResponse.mass} kg. That's  ${newResponse.mass - newResponse2.mass } kg more than me.`; 
+
+        } 
+        
+    })
+
+    //Jämföra kön
+
+    creatbutto4.addEventListener("click",()=>{
+        if(newResponse.gender===newResponse2.gender){
+            compareinfo1.innerHTML=`${newResponse2.name} is like me and we boath are: ${newResponse2.gender}`
+
+        }
+        else{
+            compareinfo1.innerHTML=`${newResponse2.name} gender is : ${newResponse2.gender} and we are not same gender `
+        }
+    })
+
+    creatbutto8.addEventListener("click",()=>{
+        if(newResponse2.gender===newResponse.gender){
+            compareinfo2.innerHTML=`${newResponse.name} is like me and we boath are: ${newResponse.gender}`
+
+        }
+        else{
+            compareinfo2.innerHTML=`${newResponse.name} gender is : ${newResponse.gender} and we are not same gender `
+        }
+    })
+
+    // jäföra hörfärg
+
+    creatbutto3.addEventListener("click",()=>{
+
+
+        if(newResponse.hair_color === newResponse2.hair_color){
+            compareinfo1.innerHTML=`${newResponse2.name} mad me ,we boath have same hair color and that is:${newResponse2.hair_color}`
+
+        }
+        else{
+            compareinfo1.innerHTML=`${newResponse2.name} hair color is : ${newResponse2.hair_color}, and we have not same hair color `
+        }
+    })
+
+
+    creatbutto7.addEventListener("click",()=>{
+        if(newResponse2.hair_color===newResponse.hair_color){
+            compareinfo2.innerHTML=`${newResponse.name} mad me ,we boath have same hair color and that is:${newResponse.hair_color}`
+
+        }
+        else{
+            compareinfo2.innerHTML=`${newResponse.name} hair color is : ${newResponse.hair_color},and we have not same hair color `
+        }
+    })
+
+    
    
 
 
 
+
+
+    // bild för div 1
 
       if(charId1==1){
           firstimg.src="/Image/berulars.jpg"
@@ -197,8 +286,7 @@ button.addEventListener("click",fetchFunction)
 
     }
 
-    // displayResut2.innerHTML= `Name: ${newResponse2.name}<br>Gender: ${newResponse2.gender} <br>Height: ${newResponse2.height} <br>Mass: ${newResponse2.mass}<br>Hair color: ${newResponse2.hair_color}`
-
+   // Nild för div 2
     if(charId2==1){
         secondimg.src="/Image/berulars.jpg"
 
@@ -235,49 +323,3 @@ button.addEventListener("click",fetchFunction)
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // button.addEventListener("click",fetchFunction)
-// function fetchFunction(){
-//     async function getdata1(){
-//         const data= await fetch("https://swapi.dev/api/people/1/")
-//         const newData= await data.json()
-//         const character1= new Strcharaters(newData.name,newData.gender,newData.height,newData.mass,newData.hair_color,newData.picUrl)
-//         console.log(character1)
-
-//         const data2= await fetch("https://swapi.dev/api/people/2/")
-//         const newData2= await data2.json()
-//         const character2= new Strcharaters(newData2.name,newData2.gender,newData2.height,newData2.mass,newData2.hair_color,newData2.picUrl)
-//         console.log(character2)
-
-//         if (character1!==character2){
-            
-//             displayResut.innerHTML=`Hello,I am ${newData2.name} <br> And my height is ${newData2.height} <br> 
-//             I am shorter then my friend`
-
-
-//         }
-
-
-       
-
-        
-//     }
-//    getdata1()
-  
-// }
