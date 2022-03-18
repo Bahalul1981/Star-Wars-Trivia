@@ -96,3 +96,22 @@ button{
    
 
 }
+#compareinfo{
+    display: flex;
+    justify-content: space-around;
+
+}
+.compareinfo1{
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    background-color: rgb(147, 170, 150);
+   
+}
+.compareinfo2{
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    background-color: rgb(134, 160, 137);
+}
+
