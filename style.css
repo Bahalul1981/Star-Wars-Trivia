@@ -115,3 +115,8 @@ button{
     background-color: rgb(134, 160, 137);
 }
 
+@media screen and (max-width: 992px) {
+    #logoImg{
+        height:150px;
+    }
+  }

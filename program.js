@@ -1,4 +1,3 @@
-
 // class constractor
 
 class Strcharaters{
@@ -33,13 +32,15 @@ let kar2=document.getElementById("kar2")
 
 
 
+
+
 // Fetch API
 
 button.addEventListener("click",fetchFunction)
 
 
  async function fetchFunction(){
-   
+      
       const charId1 = document.querySelector("#kar1").value;
       const response = await fetch(`https://swapi.dev/api/people/${charId1}`);
       const newResponse = await response.json();
@@ -53,16 +54,23 @@ button.addEventListener("click",fetchFunction)
       const charactor2 =new Strcharaters(newResponse2.name,newResponse2.gender,newResponse2.height,newResponse2.mass,newResponse2.hair_color);
     
     
+    // Om value är tomt eller sammar karak
 
-    
-
-     if(charId1==charId2){
+     if(charId1===charId2){
          alert("Du får inte jämföra samma karektär.Gärna välj olika karäkter")
-       return false
+         return false
+       
 
      }
+
+     if(charId1=="Karaktär-1"&&charId2=="Karaktär-2"){
+         alert("Du måste välja din favoritkorrektor")
+         return false
+     }
      
-   
+     
+     
+     
 
       const creatbutto1=document.createElement("button")
       creatbutto1.innerText="Vikt"
@@ -84,6 +92,7 @@ button.addEventListener("click",fetchFunction)
         const newelem=document.createElement("p")
         newelem.innerHTML=`Name: ${newResponse.name}<br>Gender: ${newResponse.gender}<br>Height: ${newResponse.height}<br>Mass: ${newResponse.mass}<br>Hair-colo: ${newResponse.hair_color}`
         displayResut.appendChild(newelem)
+       
 
        
 
@@ -117,6 +126,7 @@ button.addEventListener("click",fetchFunction)
         const twoelem=document.createElement("p")
         twoelem.innerHTML=`Name: ${newResponse2.name}<br>Gender: ${newResponse2.gender}<br>Height: ${newResponse2.height}<br>Mass: ${newResponse2.mass}<br>Hair-colo: ${newResponse2.hair_color}`
         displayResut2.appendChild(twoelem)
+        
     }
     characterTwoInfo()
    
