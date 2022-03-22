@@ -272,7 +272,7 @@ button.addEventListener("click",fetchFunction)
 
     }
     if(charId1==3){
-        firstimg.src="/Image/darthvader.png"
+        firstimg.src="/Image/darthvader.jpeg"
 
     }
     if(charId1==4){
