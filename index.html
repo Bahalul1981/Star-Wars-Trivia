@@ -1,100 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <img class="mainimg" src="/Image/starwarebackground.jpg" />
+      <div class="center">
+        <img id="logoImg" src="/Image/stareware.png" />
 
-<body>
-    <div class="maindiv">
-       <div class="h1">
-          <img id="logoImg" src="/Image/stareware.png"  height="250px">
-       </div>
+        <div class="button-summary">
+          <div class="buton-section">
+            <h1>Add your favourite characters</h1>
 
-        <select name="kar1" id="kar1" >
-
-                    <option value="Karaktär-1" id="crr1">Karaktär 1</option>
-                    <option value="1">Luke Skywalker</option>
-                    <option value="2">C-3PO</option>
-                    <option value="3">Chewbacca</option>
-                    <option value="4">Darth Vader</option>
-                    <option value="5">Leia Organa</option>
-                    <option value="6">Owen Lars</option>
-                    <option value="7">Beru Whitesun lars</option>
-                    <option value="8">R5-D4</option>
-            
-        </select>
-          <select name="kar2" id="kar2" >
-
-                    <option value="Karaktär-2"id="crr2">Karaktär 2</option>
-                    <option value="1">Luke Skywalker</option>
-                    <option value="2">C-3PO</option>
-                    <option value="3">Chewbacca</option>
-                    <option value="4">Darth Vader</option>
-                    <option value="5">Leia Organa</option>
-                    <option value="6">Owen Lars</option>
-                    <option value="7">Beru Whitesun lars</option>
-                    <option value="8">R5-D4</option>
-                    
-            
-            
-          </select><br>
-
-
-         <button id="Compare" >Compare characters</button>
-
-
-        <div id="text-display-div">
-            <div id="text">
-                <p id="datafrom"></p>  
-            </div>
-            <div id="text">
-               <p id="datafrom2"></p>
-
-               <!-- extra try -->
-               <!-- <button id="button">I am button</button> -->
-            </div>
+            <select name="kar1" class="kar1">
+              <option value="0" class="Characters">Characters</option>
+              <option value="1">Luke Skywalker</option>
+              <option value="2">C-3PO</option>
+              <option value="3">R2-RD</option>
+              <option value="4">Darth Vader</option>
+              <option value="5">Leia Organa</option>
+              <option value="6">Owen Lars</option>
+              <option value="7">Beru Whitesun lars</option>
+              <option value="8">R5-D4</option>
+              <option value="9">Biggs Darklighter</option>
+              <option value="10">Obi-Wan Kenobi</option>
+            </select>
+            <button class="add-charactor">Add</button>
+          </div>
+          <div class="summary">
+            <h1>Your total summary is empty</h1>
+          </div>
         </div>
-
-        <div id="compareinfo">
-            <div class="compareinfo1"></div>
-            <div class="compareinfo2"></div>
-
-        </div>  
-
-
-        <div id="image-display-div">
-            
-            <div >
-
-                   <img id="firstimg" alt="" height="500px" width="400px">
-            </div>
-
-            <div >
-                 <img id="secondimg" alt="" height="500px" width="400px">
-            </div>
-
-        </div>
-         
-
-           
-    
-
-        
-        
-        
-
+      </div>
     </div>
-    
-    
-
-
-
-    
-
+    <div class="display-characters">
+      <div class="istcharac" id="istcharac1"></div>
+    </div>
     <script src="program.js"></script>
-</body>
+  </body>
 </html>
