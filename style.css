@@ -16,7 +16,11 @@
 }
 #logoImg {
   height: 300px;
-  width: 500px;
+  width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
   /* height: 400px;
   width: 400px; */
 }
@@ -31,10 +35,10 @@
   color: rgb(235, 233, 233);
 }
 .summary {
-  height: 400px;
+  height: auto;
   width: 500px;
-  color: rgb(235, 233, 233);
-  overflow-y: auto;
+  color: rgb(255, 255, 255);
+  overflow-x: auto;
 }
 .kar1 {
   height: 40px;
@@ -62,22 +66,23 @@
   cursor: pointer;
   color: white;
 }
-.display-characters {
-  display: flex;
-  justify-content: space-between;
-  overflow-x: auto;
-}
+
 .istcharac {
-  display: inline-flex;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
   width: auto;
   color: white;
   height: auto;
   text-align: center;
-  background-color: rgb(15, 30, 45);
 }
 img {
   height: 500px;
   width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
 }
 
 /* 

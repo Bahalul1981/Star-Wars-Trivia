@@ -1,6 +1,6 @@
 // DOM List
 
-const displayResut = document.querySelector("#istcharac1");
+const displayResut = document.querySelector(".istcharac");
 const button = document.querySelector(".add-charactor");
 const summary = document.querySelector(".summary");
 const deletbtn = document.querySelector("#delet");
@@ -15,7 +15,13 @@ async function fetchFunction() {
   const charId1 = document.querySelector(".kar1").value;
   const response = await fetch(`https://swapi.dev/api/people/${charId1}`);
   const newResponse = await response.json();
+  console.log(totalheight);
+  if (charId1 == "0") {
+    alert("You did not choose any character....");
+    return false;
+  }
 
+  let totgender = [];
   //SET API OBJECT TO LOCAL STORAGE
 
   localStorage.setItem("waight", JSON.stringify(newResponse));
@@ -23,8 +29,11 @@ async function fetchFunction() {
 
   let nweight = JSON.parse(getWeightFromLocalStor.mass);
   let nwheight = JSON.parse(getWeightFromLocalStor.height);
+  let nwgender = getWeightFromLocalStor.gender;
+
   totalweight.push(nweight);
   totalheight.push(nwheight);
+  totgender.push(nwgender);
 
   let newtotalwaight = 0;
   for (let i = 0; i < totalweight.length; i++) {
@@ -35,11 +44,16 @@ async function fetchFunction() {
   for (let i = 0; i < totalheight.length; i++) {
     newtotalheight += totalheight[i];
   }
-  //DISPLAY SUMMARY
-  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} kg<h2/><h2>Total weight is: ${newtotalheight} kg<h2/>`;
+  let newtotgender = "";
+  for (let i = 0; i < totgender.length; i++) {
+    newtotgender += totgender[i];
+  }
 
+  //DISPLAY SUMMARY
+  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} kg<h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3> Genders of last character: ${newtotgender}<h3/> `;
+  console.log(newtotgender);
   const newelem = document.createElement("div");
-  newelem.style.backgroundColor = "red";
+  newelem.style.backgroundColor = "lightblue";
   newelem.style.margin = "50px";
 
   newelem.innerHTML = `<p>Name: ${getWeightFromLocalStor.name}<br>Gender: ${getWeightFromLocalStor.gender}<br>Height: ${getWeightFromLocalStor.height}
@@ -61,11 +75,6 @@ async function fetchFunction() {
   });
 
   // CONDITION FOR SAME ITEAM REAPETED
-
-  if (newResponse.name == undefined) {
-    alert("You did not choose any character....");
-    return false;
-  }
 
   //DISPLAY IMAGE ALL IMAGE
   if (charId1 == 1) {
