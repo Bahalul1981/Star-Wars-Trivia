@@ -15,7 +15,8 @@ async function fetchFunction() {
   const charId1 = document.querySelector(".kar1").value;
   const response = await fetch(`https://swapi.dev/api/people/${charId1}`);
   const newResponse = await response.json();
-  console.log(totalheight);
+  console.log();
+
   if (charId1 == "0") {
     alert("You did not choose any character....");
     return false;
@@ -24,8 +25,8 @@ async function fetchFunction() {
   let totgender = [];
   //SET API OBJECT TO LOCAL STORAGE
 
-  localStorage.setItem("waight", JSON.stringify(newResponse));
-  let getWeightFromLocalStor = JSON.parse(localStorage.getItem("waight"));
+  localStorage.setItem("weight", JSON.stringify(newResponse));
+  let getWeightFromLocalStor = JSON.parse(localStorage.getItem("weight"));
 
   let nweight = JSON.parse(getWeightFromLocalStor.mass);
   let nwheight = JSON.parse(getWeightFromLocalStor.height);
@@ -50,28 +51,28 @@ async function fetchFunction() {
   }
 
   //DISPLAY SUMMARY
-  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} kg<h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3> Genders of last character: ${newtotgender}<h3/> `;
-  console.log(newtotgender);
-  const newelem = document.createElement("div");
-  newelem.style.backgroundColor = "lightblue";
-  newelem.style.margin = "50px";
+  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3> Genders of last character: ${newtotgender}<h3/> `;
 
-  newelem.innerHTML = `<p>Name: ${getWeightFromLocalStor.name}<br>Gender: ${getWeightFromLocalStor.gender}<br>Height: ${getWeightFromLocalStor.height}
-    <br>Mass: ${getWeightFromLocalStor.mass}<br>Hair-colo: ${getWeightFromLocalStor.hair_color} </p>`;
-  displayResut.appendChild(newelem);
+  const displayDiv = document.createElement("div");
+  //ADDING DISPLAY WITH CSS
+  displayDiv.classList.add("displaydiv");
+
+  displayDiv.innerHTML = `<h4>Name: ${getWeightFromLocalStor.name}<br>Gender: ${getWeightFromLocalStor.gender}<br>Height: ${getWeightFromLocalStor.height}
+    <br>Mass: ${getWeightFromLocalStor.mass}<br>Hair-colo: ${getWeightFromLocalStor.hair_color} </h4>`;
+  displayResut.appendChild(displayDiv);
 
   const deletbtn = document.createElement("button");
+  //ADDING DISPLAY WITH CSS
+  deletbtn.classList.add("newdeletbtn");
   deletbtn.innerText = "Delete";
-  newelem.appendChild(deletbtn);
-  deletbtn.style.height = "30px";
-  deletbtn.style.width = "80px";
-  deletbtn.style.margin = "20px";
+  displayDiv.appendChild(deletbtn);
 
   //DELET ITEAM
   deletbtn.addEventListener("click", () => {
     let parent = displayResut;
     let chield = parent.getElementsByTagName("div")[0];
     parent.removeChild(chield);
+    alert(`You have been removed: ${getWeightFromLocalStor.name}`);
   });
 
   // CONDITION FOR SAME ITEAM REAPETED
@@ -80,53 +81,53 @@ async function fetchFunction() {
   if (charId1 == 1) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/LukeSkywalker.jpeg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
 
   if (charId1 == 2) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/c-3po.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
 
   if (charId1 == 3) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/chawbecca.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 4) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/darthvader.jpeg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 5) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/leiaorgana.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 6) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/berulars.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 7) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/kamlabi.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 8) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/BiggsDarklighter.jpeg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 9) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/obion.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
   if (charId1 == 10) {
     const image = document.createElement("img");
     image.setAttribute("src", "/Image/Oenlars.jpg");
-    newelem.appendChild(image);
+    displayDiv.appendChild(image);
   }
 }

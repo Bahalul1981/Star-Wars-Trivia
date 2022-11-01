@@ -84,7 +84,22 @@ img {
   align-items: center;
   margin: 5px;
 }
-
+.displaydiv {
+  background-color: rgba(4, 48, 70, 0.707);
+  margin: 50px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px rgb(164, 164, 164);
+}
+.newdeletbtn {
+  height: 30px;
+  width: 100px;
+  margin: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.newdeletbtn:hover {
+  background-color: rgba(194, 39, 39, 0.7);
+}
 /* 
 .maindiv{
     display: block;
