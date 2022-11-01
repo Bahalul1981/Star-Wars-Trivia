@@ -64,6 +64,7 @@ async function fetchFunction() {
   const deletbtn = document.createElement("button");
   //ADDING DISPLAY WITH CSS
   deletbtn.classList.add("newdeletbtn");
+
   deletbtn.innerText = "Delete";
   displayDiv.appendChild(deletbtn);
 
