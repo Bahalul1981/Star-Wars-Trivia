@@ -7,14 +7,16 @@ const deletbtn = document.querySelector("#delet");
 let hhj = document.getElementsByTagName;
 
 // TOTAL HEIGHT AND WAIGHT
+
 let totalheight = [];
 let totalweight = [];
+let totgender = [];
 
 button.addEventListener("click", fetchFunction);
 async function fetchFunction() {
   const charId1 = document.querySelector(".kar1").value;
   const response = await fetch(`https://swapi.dev/api/people/${charId1}`);
-  const newResponse = await response.json();
+  const totgenderesponse = await response.json();
   console.log();
 
   if (charId1 == "0") {
@@ -22,19 +24,22 @@ async function fetchFunction() {
     return false;
   }
 
-  let totgender = [];
   //SET API OBJECT TO LOCAL STORAGE
 
-  localStorage.setItem("weight", JSON.stringify(newResponse));
+  localStorage.setItem("weight", JSON.stringify(totgenderesponse));
   let getWeightFromLocalStor = JSON.parse(localStorage.getItem("weight"));
 
   let nweight = JSON.parse(getWeightFromLocalStor.mass);
   let nwheight = JSON.parse(getWeightFromLocalStor.height);
   let nwgender = getWeightFromLocalStor.gender;
 
+  localStorage.setItem("newgender", JSON.stringify(nwgender));
+  let displayNewGender = JSON.parse(localStorage.getItem("newgender"));
+  totgender.push(displayNewGender);
+  console.log(totgender);
+
   totalweight.push(nweight);
   totalheight.push(nwheight);
-  totgender.push(nwgender);
 
   let newtotalwaight = 0;
   for (let i = 0; i < totalweight.length; i++) {
@@ -45,13 +50,61 @@ async function fetchFunction() {
   for (let i = 0; i < totalheight.length; i++) {
     newtotalheight += totalheight[i];
   }
-  let newtotgender = "";
-  for (let i = 0; i < totgender.length; i++) {
-    newtotgender += totgender[i];
+
+  let countTotalgender = totgender.reduce((gender, num) => {
+    gender[num] = (gender[num] || 0) + 1;
+    return gender;
+  }, {});
+
+  if (countTotalgender.male) {
+    alert("male group");
+  } else if (countTotalgender.female) {
+    alert("female group");
+  } else {
+    alert("mix group");
   }
 
+  // let tota = totgender.filter((en) => {
+  //   re;
+  // });
+  // if (totgender == "male") {
+  //   alert("you are male");
+  //   return false;
+  // } else if (totgender == "female") {
+  //   alert("You are female");
+  //   return true;
+  // } else if (totgender == "n/a") {
+  //   alert("Your gender is mix");
+  //   return true;
+  // } else if (totgender == "male" && "n/a") {
+  //   alert("you are male");
+  //   return true;
+  // } else if (totgender == "female" && "n/a") {
+  //   alert("You are female");
+  //   return true;
+  // } else {
+  //   alert("Your total group is mixed");
+  // }
+
+  // let genderidentifi = () => {
+  //   if (newtotalgender == "male") {
+  //     alert("Your gender is male");
+  //   } else if (newtotalgender == "female") {
+  //     alert("Your gender is female");
+  //   } else if (newtotalgender == "n/a") {
+  //     alert("Your gender is mix");
+  //   } else if (newtotalgender == "female" && "n/a") {
+  //     alert("You are in mix  femal group");
+  //   } else if (newtotalgender == "male" && "n/a") {
+  //     alert("You are in mix male group group");
+  //   } else {
+  //     alert("You are only in mix group");
+  //   }
+  // };
+  // genderidentifi();
+
   //DISPLAY SUMMARY
-  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3> Genders of last character: ${newtotgender}<h3/> `;
+  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3><h3/> `;
 
   const displayDiv = document.createElement("div");
   //ADDING DISPLAY WITH CSS
@@ -64,19 +117,22 @@ async function fetchFunction() {
   const deletbtn = document.createElement("button");
   //ADDING DISPLAY WITH CSS
   deletbtn.classList.add("newdeletbtn");
-
   deletbtn.innerText = "Delete";
   displayDiv.appendChild(deletbtn);
 
   //DELET ITEAM
-  deletbtn.addEventListener("click", () => {
-    let parent = displayResut;
-    let chield = parent.getElementsByTagName("div")[0];
-    parent.removeChild(chield);
-    alert(`You have been removed: ${getWeightFromLocalStor.name}`);
-  });
+  let sureTodelete = (event) => {
+    var result = confirm("Are you sure to delete?");
+    if (result == false) {
+      event.preventDefault();
+    } else {
+      let parent = displayResut;
+      let chield = parent.getElementsByTagName("div")[0];
+      parent.removeChild(chield);
+    }
+  };
 
-  // CONDITION FOR SAME ITEAM REAPETED
+  deletbtn.addEventListener("click", sureTodelete);
 
   //DISPLAY IMAGE ALL IMAGE
   if (charId1 == 1) {
