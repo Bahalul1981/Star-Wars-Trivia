@@ -1,5 +1,3 @@
-// DOM List
-
 const displayResut = document.querySelector(".istcharac");
 const button = document.querySelector(".add-charactor");
 const summary = document.querySelector(".summary");
@@ -56,12 +54,17 @@ async function fetchFunction() {
     return gender;
   }, {});
 
-  if (countTotalgender.male) {
-    alert("male group");
-  } else if (countTotalgender.female) {
-    alert("female group");
+  let male = countTotalgender.male;
+  let female = countTotalgender.female;
+
+  if (male > 0 && female > 0) {
+    summary.innerHTML = ` <h2>Total height is ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is: MIXED<h3/> `;
+  } else if (male > 0) {
+    summary.innerHTML = ` <h2>Total height is ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is MALE<h3/> `;
+  } else if (female > 0) {
+    summary.innerHTML = ` <h2>Total height is ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is FEMALE<h3/> `;
   } else {
-    alert("mix group");
+    summary.innerHTML = ` <h2>Total height is ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is: NONE/ROBOT<h3/> `;
   }
 
   // let tota = totgender.filter((en) => {
@@ -104,7 +107,6 @@ async function fetchFunction() {
   // genderidentifi();
 
   //DISPLAY SUMMARY
-  summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3><h3/> `;
 
   const displayDiv = document.createElement("div");
   //ADDING DISPLAY WITH CSS
