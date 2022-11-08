@@ -21,7 +21,9 @@ async function fetchFunction() {
 
   localStorage.setItem("dataToLocalStorage", JSON.stringify(stareWareAPI));
 
-  let getDataFromLocal = JSON.parse(localStorage.getItem("dataToLocalStorage"));
+  let getDataFromLocal = localStorage.getItem("dataToLocalStorage")
+    ? JSON.parse(localStorage.getItem("dataToLocalStorage"))
+    : [];
 
   if (charId1 == "0") {
     alert("You did not choose any character....");
