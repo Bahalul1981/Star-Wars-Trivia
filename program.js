@@ -13,8 +13,8 @@ let stareWareAPI = [];
 
 button.addEventListener("click", fetchFunction);
 async function fetchFunction() {
-  const charId1 = document.querySelector(".kar1").value;
-  const response = await fetch(`https://swapi.dev/api/people/${charId1}`);
+  const characterId1 = document.querySelector(".kar1").value;
+  const response = await fetch(`https://swapi.dev/api/people/${characterId1}`);
 
   const totgenderesponse = await response.json();
   stareWareAPI.push(totgenderesponse.name);
@@ -25,7 +25,7 @@ async function fetchFunction() {
     ? JSON.parse(localStorage.getItem("dataToLocalStorage"))
     : [];
 
-  if (charId1 == "0") {
+  if (characterId1 == "0") {
     alert("You did not choose any character....");
     return false;
   }
@@ -57,15 +57,21 @@ async function fetchFunction() {
   let male = countTotalgender.male;
   let female = countTotalgender.female;
 
+  const totalWeightHeader = ` <h2>Total height is: ${newtotalwaight} cm <h2/>`;
+  const totalHeightHeader = ` <h2>Total weight is: ${newtotalheight} kg<h2/>`;
+  const GenderGroupProperties = "Your gender group is :";
+  let genderGroup;
+
   if (male > 0 && female > 0) {
-    summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is: MIXED<h3/> `;
+    genderGroup = `<h3>${GenderGroupProperties} MIXED<h3/>`;
   } else if (male > 0) {
-    summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is MALE<h3/> `;
+    genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
   } else if (female > 0) {
-    summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is FEMALE<h3/> `;
+    genderGroup = `<h3>${GenderGroupProperties} FEMALE<h3/> `;
   } else {
-    summary.innerHTML = ` <h2>Total height is: ${newtotalwaight} cm <h2/><h2>Total weight is: ${newtotalheight} kg<h2/><h3>Gender group is: NONE/ROBOT<h3/> `;
+    genderGroup = `<h3>${GenderGroupProperties} NONE/ROBOT<h3/>`;
   }
+  summary.innerHTML = `${totalWeightHeader}${totalHeightHeader}${genderGroup}`;
 
   if (getDataFromLocal) {
     const displayDiv = document.createElement("div");
@@ -99,57 +105,96 @@ async function fetchFunction() {
     deletbtn.addEventListener("click", sureTodelete);
 
     //DISPLAY IMAGE ALL IMAGE
-    if (charId1 == 1) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/LukeSkywalker.jpeg");
-      displayDiv.appendChild(image);
+    const imageElement = document.createElement("img");
+    displayDiv.appendChild(imageElement);
+    let imageSource;
+
+    const arrayOfCharImagesById = {
+      1: {
+        characterId: 1,
+        imageSource: "LukeSkywalker.jpeg",
+      },
+      2: {
+        characterId: 2,
+        imageSource: "c-3po.jpg",
+      },
+      3: {
+        characterId: 3,
+        imageSource: "chawbecca.jpg",
+      },
+      4: {
+        characterId: 4,
+        imageSource: "darthvader.jpeg",
+      },
+      5: {
+        characterId: 5,
+        imageSource: "leiaorgana.jpg",
+      },
+      6: {
+        characterId: 6,
+        imageSource: "berulars.jpg",
+      },
+      7: {
+        characterId: 7,
+        imageSource: "kamlabi.jpg",
+      },
+      8: {
+        characterId: 8,
+        imageSource: "BiggsDarklighter.jpeg",
+      },
+      9: {
+        characterId: 9,
+        imageSource: "obion.jpg",
+      },
+      10: {
+        characterId: 10,
+        imageSource: "Oenlars.jpg",
+      },
+    };
+
+    function kjfdlsk() {
+      for (key in arrayOfCharImagesById) {
+        characterId1 == arrayOfCharImagesById[key].imageSource;
+      }
+    }
+    kjfdlsk();
+
+    // arrayOfCharImagesById.forEach((newelement) => {
+    //   characterId1 == newelement.characterId;
+    // });
+
+    if (characterId1 == 1) {
+      imageSource = "LukeSkywalker.jpeg";
     }
 
-    if (charId1 == 2) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/c-3po.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 2) {
+      imageSource = "c-3po.jpg";
     }
 
-    if (charId1 == 3) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/chawbecca.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 3) {
+      imageSource = "chawbecca.jpg";
     }
-    if (charId1 == 4) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/darthvader.jpeg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 4) {
+      imageSource = "darthvader.jpeg";
     }
-    if (charId1 == 5) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/leiaorgana.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 5) {
+      imageSource = "leiaorgana.jpg";
     }
-    if (charId1 == 6) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/berulars.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 6) {
+      imageSource = "berulars.jpg";
     }
-    if (charId1 == 7) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/kamlabi.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 7) {
+      imageSource = "kamlabi.jpg";
     }
-    if (charId1 == 8) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/BiggsDarklighter.jpeg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 8) {
+      imageSource = "BiggsDarklighter.jpeg";
     }
-    if (charId1 == 9) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/obion.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 9) {
+      imageSource = "obion.jpg";
     }
-    if (charId1 == 10) {
-      const image = document.createElement("img");
-      image.setAttribute("src", "/Image/Oenlars.jpg");
-      displayDiv.appendChild(image);
+    if (characterId1 == 10) {
+      imageSource = "Oenlars.jpg";
     }
+    imageElement.setAttribute("src", "/Image/" + imageSource);
   }
 }
