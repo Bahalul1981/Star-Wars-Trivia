@@ -1,91 +1,93 @@
-const displayResut = document.querySelector(".istcharac");
-const button = document.querySelector(".add-charactor");
-const summary = document.querySelector(".summary");
-const deletbtn = document.querySelector("#delet");
+const displayNewCharacters = document.querySelector(".display-new-character");
+const addCharactersButton = document.querySelector(".add-character");
+const sumOfAddedCharecterProperty = document.querySelector(
+  ".sum-of-all-characters"
+);
 
-// TOTAL HEIGHT AND WAIGHT
+const totalHeightOfSelectedCharacters = [];
+const totalWeightOfSelectedCharacter = [];
+const gendersOfSelectedCharacters = [];
 
-let totalheight = [];
-let totalweight = [];
-let totgender = [];
+let starWarsApiData = [];
 
-let stareWareAPI = [];
-
-button.addEventListener("click", fetchFunction);
+addCharactersButton.addEventListener("click", fetchFunction);
 async function fetchFunction() {
-  const characterId1 = document.querySelector(".kar1").value;
-  const response = await fetch(`https://swapi.dev/api/people/${characterId1}`);
+  const selectedCharacter = document.querySelector(
+    ".charecter-of-movies"
+  ).value;
+  const response = await fetch(
+    `https://swapi.py4e.com/api/people/${selectedCharacter}`
+  );
 
-  const totgenderesponse = await response.json();
-  stareWareAPI.push(totgenderesponse.name);
+  const dataFromApi = await response.json();
+  starWarsApiData.push(dataFromApi.name);
 
-  localStorage.setItem("dataToLocalStorage", JSON.stringify(stareWareAPI));
-
+  localStorage.setItem("dataToLocalStorage", JSON.stringify(starWarsApiData));
   let getDataFromLocal = localStorage.getItem("dataToLocalStorage")
     ? JSON.parse(localStorage.getItem("dataToLocalStorage"))
     : [];
 
-  if (characterId1 == "0") {
-    alert("You did not choose any character....");
-    return false;
+  if (selectedCharacter == "0") {
+    alert("You did not choose any character.Please choose a character.");
   }
 
-  let nweheight = JSON.parse(totgenderesponse.mass);
-  let nwweight = JSON.parse(totgenderesponse.height);
-  let newgender = totgenderesponse.gender;
+  const nweheight = JSON.parse(dataFromApi.mass);
+  const nwweight = JSON.parse(dataFromApi.height);
+  const newgender = dataFromApi.gender;
 
-  // totgender.push(newgender);
-  totalweight.push(nwweight);
-  totalheight.push(nweheight);
-  totgender.push(newgender);
+  totalWeightOfSelectedCharacter.push(nwweight);
+  totalHeightOfSelectedCharacters.push(nweheight);
+  gendersOfSelectedCharacters.push(newgender);
 
-  let newtotalwaight = 0;
-  for (let i = 0; i < totalweight.length; i++) {
-    newtotalwaight += totalweight[i];
+  let addedCharactersHeight = 0;
+  for (let i = 0; i < totalWeightOfSelectedCharacter.length; i++) {
+    addedCharactersHeight += totalWeightOfSelectedCharacter[i];
   }
 
-  let newtotalheight = 0;
-  for (let i = 0; i < totalheight.length; i++) {
-    newtotalheight += totalheight[i];
+  let addedCharactersWeight = 0;
+  for (let i = 0; i < totalHeightOfSelectedCharacters.length; i++) {
+    addedCharactersWeight += totalHeightOfSelectedCharacters[i];
   }
 
-  let countTotalgender = totgender.reduce((gender, num) => {
+  const countTotalgender = gendersOfSelectedCharacters.reduce((gender, num) => {
     gender[num] = (gender[num] || 0) + 1;
     return gender;
   }, {});
 
-  let male = countTotalgender.male;
-  let female = countTotalgender.female;
+  let maleCharacter = countTotalgender.male;
+  let femaleCharacter = countTotalgender.female;
+  console.log(femaleCharacter);
 
-  const totalWeightHeader = ` <h2>Total height is: ${newtotalwaight} cm <h2/>`;
-  const totalHeightHeader = ` <h2>Total weight is: ${newtotalheight} kg<h2/>`;
+  const totalWeightOfSelectedCharacterHeader = ` <h2>Total height is: ${addedCharactersHeight} cm <h2/>`;
+  const totalHeightOfSelectedCharactersHeader = ` <h2>Total weight is: ${addedCharactersWeight} kg<h2/>`;
   const GenderGroupProperties = "Your gender group is :";
+
   let genderGroup;
 
-  if (male > 0 && female > 0) {
-    genderGroup = `<h3>${GenderGroupProperties} MIXED<h3/>`;
-  } else if (male > 0) {
+  if (maleCharacter > 0 && femaleCharacter > 0) {
+    genderGroup = `<h3>${GenderGroupProperties} MIX<h3/>`;
+  } else if (femaleCharacter > 0) {
+    genderGroup = `<h3>${GenderGroupProperties} FEMAL<h3/>`;
+  } else if (maleCharacter > 0) {
     genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
-  } else if (female > 0) {
-    genderGroup = `<h3>${GenderGroupProperties} FEMALE<h3/> `;
   } else {
-    genderGroup = `<h3>${GenderGroupProperties} NONE/ROBOT<h3/>`;
+    genderGroup = `<h3>${GenderGroupProperties} ROBOT<h3/>`;
   }
-  summary.innerHTML = `${totalWeightHeader}${totalHeightHeader}${genderGroup}`;
+  sumOfAddedCharecterProperty.innerHTML = `${totalWeightOfSelectedCharacterHeader}${totalHeightOfSelectedCharactersHeader}${genderGroup}`;
 
   if (getDataFromLocal) {
     const displayDiv = document.createElement("div");
-    //ADDING DISPLAY WITH CSS
+    // ADD CLASS TO WORK WITH CSS
     displayDiv.classList.add("displaydiv");
-    displayDiv.innerHTML = `<h4>Name: ${totgenderesponse.name}<br>Gender: ${totgenderesponse.gender}<br>Height: ${totgenderesponse.height}
-      <br>Mass: ${totgenderesponse.mass}<br>Hair-colo: ${totgenderesponse.hair_color} </h4>`;
-    displayResut.appendChild(displayDiv);
+    displayDiv.innerHTML = `<h4>Name: ${dataFromApi.name}<br>Gender: ${dataFromApi.gender}<br>Height: ${dataFromApi.height}
+      <br>Mass: ${dataFromApi.mass}<br>Hair-colo: ${dataFromApi.hair_color} </h4>`;
+    displayNewCharacters.appendChild(displayDiv);
 
-    const deletbtn = document.createElement("button");
-    //ADDING DISPLAY WITH CSS
-    deletbtn.classList.add("newdeletbtn");
-    deletbtn.innerText = "Delete";
-    displayDiv.appendChild(deletbtn);
+    const deleteAddedCharacter = document.createElement("addCharactersButton");
+    // ADD CLASS TO WORK WITH CSS
+    deleteAddedCharacter.classList.add("newdeleteAddedCharacter");
+    deleteAddedCharacter.innerText = "Delete";
+    displayDiv.appendChild(deleteAddedCharacter);
 
     //DELET ITEAM
     let sureTodelete = (e) => {
@@ -93,7 +95,7 @@ async function fetchFunction() {
       if (result == false) {
         e.preventDefault();
       } else {
-        let parent = displayResut;
+        let parent = displayNewCharacters;
         let chield = parent.getElementsByTagName("div")[0];
         parent.removeChild(chield);
         console.log(chield);
@@ -102,99 +104,45 @@ async function fetchFunction() {
       }
     };
 
-    deletbtn.addEventListener("click", sureTodelete);
+    deleteAddedCharacter.addEventListener("click", sureTodelete);
 
-    //DISPLAY IMAGE ALL IMAGE
-    const imageElement = document.createElement("img");
-    displayDiv.appendChild(imageElement);
-    let imageSource;
-
-    const arrayOfCharImagesById = {
+    const charactersImage = {
       1: {
-        characterId: 1,
         imageSource: "LukeSkywalker.jpeg",
       },
       2: {
-        characterId: 2,
         imageSource: "c-3po.jpg",
       },
       3: {
-        characterId: 3,
         imageSource: "chawbecca.jpg",
       },
       4: {
-        characterId: 4,
         imageSource: "darthvader.jpeg",
       },
       5: {
-        characterId: 5,
         imageSource: "leiaorgana.jpg",
       },
       6: {
-        characterId: 6,
         imageSource: "berulars.jpg",
       },
       7: {
-        characterId: 7,
         imageSource: "kamlabi.jpg",
       },
       8: {
-        characterId: 8,
         imageSource: "BiggsDarklighter.jpeg",
       },
       9: {
-        characterId: 9,
         imageSource: "obion.jpg",
       },
       10: {
-        characterId: 10,
         imageSource: "Oenlars.jpg",
       },
     };
 
-    function kjfdlsk() {
-      for (key in arrayOfCharImagesById) {
-        characterId1 == arrayOfCharImagesById[key].imageSource;
-      }
-    }
-    kjfdlsk();
-
-    // arrayOfCharImagesById.forEach((newelement) => {
-    //   characterId1 == newelement.characterId;
-    // });
-
-    if (characterId1 == 1) {
-      imageSource = "LukeSkywalker.jpeg";
-    }
-
-    if (characterId1 == 2) {
-      imageSource = "c-3po.jpg";
-    }
-
-    if (characterId1 == 3) {
-      imageSource = "chawbecca.jpg";
-    }
-    if (characterId1 == 4) {
-      imageSource = "darthvader.jpeg";
-    }
-    if (characterId1 == 5) {
-      imageSource = "leiaorgana.jpg";
-    }
-    if (characterId1 == 6) {
-      imageSource = "berulars.jpg";
-    }
-    if (characterId1 == 7) {
-      imageSource = "kamlabi.jpg";
-    }
-    if (characterId1 == 8) {
-      imageSource = "BiggsDarklighter.jpeg";
-    }
-    if (characterId1 == 9) {
-      imageSource = "obion.jpg";
-    }
-    if (characterId1 == 10) {
-      imageSource = "Oenlars.jpg";
-    }
-    imageElement.setAttribute("src", "/Image/" + imageSource);
+    //DISPLAY IMAGE ALL IMAGES:
+    const imageElement = document.createElement("img");
+    const image = charactersImage[selectedCharacter].imageSource;
+    imageElement.setAttribute("src", "/Image/" + image);
+    displayDiv.appendChild(imageElement);
   }
 }

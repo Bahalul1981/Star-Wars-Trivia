@@ -20,27 +20,24 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-
-  /* height: 400px;
-  width: 400px; */
 }
-.button-summary {
+.button-of-summary {
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
 }
-.buton-section {
+.button-section {
   height: 400px;
   width: 500px;
   color: rgb(235, 233, 233);
 }
-.summary {
+.sum-of-all-characters {
   height: auto;
   width: 500px;
   color: rgb(255, 255, 255);
   overflow-x: auto;
 }
-.kar1 {
+.charecter-of-movies {
   height: 40px;
   width: 350px;
   font-size: 20px;
@@ -48,12 +45,12 @@
   text-align: center;
   background-color: rgb(235, 233, 233);
 }
-.kar1:hover {
+.charecter-of-movies:hover {
   background-color: rgb(25, 46, 89);
   cursor: pointer;
   color: white;
 }
-.add-charactor {
+.add-character {
   height: 40px;
   width: 350px;
   margin-top: 20px;
@@ -61,13 +58,13 @@
   border-radius: 5px;
   background-color: rgb(235, 233, 233);
 }
-.add-charactor:hover {
+.add-character:hover {
   background-color: rgb(25, 46, 89);
   cursor: pointer;
   color: white;
 }
 
-.istcharac {
+.display-new-character {
   display: flex;
   justify-content: flex-start;
   overflow-x: auto;
@@ -100,125 +97,35 @@ img {
 .newdeletbtn:hover {
   background-color: rgba(194, 39, 39, 0.7);
 }
-/* 
-.maindiv{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    height: auto;
-    margin-top: 5%;
-    background-color: rgba(142, 152, 156, 0.644);
-    border: 1px solid rgb(95, 91, 91);
-    border-radius: 20px;
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-    font-size: 1.5rem;
-    text-align: center;
-    box-sizing: border-box;
-    
 
-
-}
-#kar1 {
-    height: 30px;
-    width: 200px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 254, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-}
-#kar2 {
-    height: 30px;
-    width: 200px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 254, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-    margin: 45px;
-}
-
-
-
-#Compare{
-    margin-left: auto;
-    margin-right: auto;
-    height: 40px;
-    width: 150px;
-    margin-top: 40px;
-    background-color: rgba(244, 245, 244, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-    border-radius: 10px;
-
-}
-#text-display-div{
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-around; 
-    flex-wrap: wrap; 
-    
-}
-#text{
-    height: auto;
-   
-    margin: 20px;
-    border-radius: 20px;
-    
-}
-
-#image-display-div{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; 
-    
-}
-
-#image{
-    height: 350px;
-    width: 500px;
-    margin: 20px;
-    background-color: rgb(161, 168, 168);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);   
-    border-radius: 20px;
-
-}
-button{
-    width: 100px;
-    height: 30px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: rgba(84, 105, 87, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-}
-
-.h1{
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-    margin-bottom: 50px;
-    text-shadow: 3px 3px 3px  rgb(88, 93, 97)
-    
-   
-
-}
-#compareinfo{
-    display: flex;
-    justify-content: space-around;
-
-}
-.compareinfo1{
-    width: 400px;
-    height: auto;
-    margin: 20px;
-    background-color: rgb(147, 170, 150);
-   
-}
-.compareinfo2{
-    width: 400px;
-    height: auto;
-    margin: 20px;
-    background-color: rgb(134, 160, 137);
+.newdeleteAddedCharacter {
+  color: rgb(191, 13, 13);
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 992px) {
-    #logoImg{
-        height:150px;
-    }
-  } */
+  .display-new-character {
+    width: 500px;
+    display: block;
+  }
+
+  .button-of-summary {
+    display: block;
+    margin: auto;
+    width: 50%;
+  }
+  .mainimg {
+    width: 700px;
+    height: 1000px;
+  }
+  .displaydiv {
+    width: 100%;
+    margin-left: 30%;
+  }
+  #logoImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

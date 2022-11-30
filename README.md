@@ -1,1 +1,0 @@
-# Stare-wars-at-pingpong
