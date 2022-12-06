@@ -115,6 +115,7 @@ async function fetchFunction() {
 
     //DISPLAY IMAGE ALL IMAGE
 
+<<<<<<< HEAD
     function imageFunction() {
       const arrayOfCharImagesById = {
         1: {
@@ -157,6 +158,48 @@ async function fetchFunction() {
         displayDiv.appendChild(imageElement);
       }
       addImageFunction();
+=======
+    let imageSource;
+    const arrayOfCharImagesById = {
+      1: {
+        imageSource: "LukeSkywalker.jpeg",
+      },
+      2: {
+        imageSource: "c-3po.jpg",
+      },
+      3: {
+        imageSource: "chawbecca.jpg",
+      },
+      4: {
+        imageSource: "darthvader.jpeg",
+      },
+      5: {
+        imageSource: "leiaorgana.jpg",
+      },
+      6: {
+        imageSource: "berulars.jpg",
+      },
+      7: {
+        imageSource: "kamlabi.jpg",
+      },
+      8: {
+        imageSource: "BiggsDarklighter.jpeg",
+      },
+      9: {
+        imageSource: "obion.jpg",
+      },
+      10: {
+        imageSource: "Oenlars.jpg",
+      },
+    };
+
+   function addImageFunction() {
+      const imageElement = document.createElement("img");
+      const image = arrayOfCharImagesById[selectedCharacter].imageSource;
+      console.log(image);
+      imageElement.setAttribute("src", "/Image/" + image);
+      displayDiv.appendChild(imageElement);
+>>>>>>> 4064865217ee798ab93f08c71e78b4760945a54c
     }
   }
   imageFunction();
