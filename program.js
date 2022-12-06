@@ -154,42 +154,5 @@ async function fetchFunction() {
       }
     }
     addImageFunction();
-
-    // arrayOfCharImagesById.forEach((newelement) => {
-    //   selectedCharacter == newelement.characterId;
-    // });
-
-    // if (selectedCharacter == 1) {
-    //   imageSource = "LukeSkywalker.jpeg";
-    // }
-
-    // if (selectedCharacter == 2) {
-    //   imageSource = "c-3po.jpg";
-    // }
-
-    // if (selectedCharacter == 3) {
-    //   imageSource = "chawbecca.jpg";
-    // }
-    // if (selectedCharacter == 4) {
-    //   imageSource = "darthvader.jpeg";
-    // }
-    // if (selectedCharacter == 5) {
-    //   imageSource = "leiaorgana.jpg";
-    // }
-    // if (selectedCharacter == 6) {
-    //   imageSource = "berulars.jpg";
-    // }
-    // if (selectedCharacter == 7) {
-    //   imageSource = "kamlabi.jpg";
-    // }
-    // if (selectedCharacter == 8) {
-    //   imageSource = "BiggsDarklighter.jpeg";
-    // }
-    // if (selectedCharacter == 9) {
-    //   imageSource = "obion.jpg";
-    // }
-    // if (selectedCharacter == 10) {
-    //   imageSource = "Oenlars.jpg";
-    // }
   }
 }
