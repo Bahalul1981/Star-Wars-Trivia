@@ -3,7 +3,6 @@ const addCharactersButton = document.querySelector(".add-character");
 const sumOfAddedCharecterProperty = document.querySelector(
   ".sum-of-all-characters"
 );
-
 const totalHeightOfSelectedCharacters = [];
 const totalWeightOfSelectedCharacter = [];
 const gendersOfSelectedCharacters = [];
@@ -31,50 +30,56 @@ async function fetchFunction() {
     alert("You did not choose any character.Please choose a character.");
   }
 
-  const nweheight = JSON.parse(dataFromApi.mass);
-  const nwweight = JSON.parse(dataFromApi.height);
-  const newgender = dataFromApi.gender;
+  function displayGroupCharacters() {
+    const nweheight = JSON.parse(dataFromApi.mass);
+    const nwweight = JSON.parse(dataFromApi.height);
+    const newgender = dataFromApi.gender;
 
-  // gendersOfSelectedCharacters.push(newgender);
-  totalWeightOfSelectedCharacter.push(nwweight);
-  totalHeightOfSelectedCharacters.push(nweheight);
-  gendersOfSelectedCharacters.push(newgender);
+    // gendersOfSelectedCharacters.push(newgender);
+    totalWeightOfSelectedCharacter.push(nwweight);
+    totalHeightOfSelectedCharacters.push(nweheight);
+    gendersOfSelectedCharacters.push(newgender);
 
-  let addedCharactersHeight = 0;
-  for (let i = 0; i < totalWeightOfSelectedCharacter.length; i++) {
-    addedCharactersHeight += totalWeightOfSelectedCharacter[i];
+    let addedCharactersHeight = 0;
+    for (let i = 0; i < totalWeightOfSelectedCharacter.length; i++) {
+      addedCharactersHeight += totalWeightOfSelectedCharacter[i];
+    }
+
+    let addedCharactersWeight = 0;
+    for (let i = 0; i < totalHeightOfSelectedCharacters.length; i++) {
+      addedCharactersWeight += totalHeightOfSelectedCharacters[i];
+    }
+
+    const countTotalgender = gendersOfSelectedCharacters.reduce(
+      (gender, num) => {
+        gender[num] = (gender[num] || 0) + 1;
+        return gender;
+      },
+      {}
+    );
+
+    let maleCharacter = countTotalgender.male;
+    let femaleCharacter = countTotalgender.female;
+    console.log(femaleCharacter);
+
+    const totalWeightOfSelectedCharacterHeader = ` <h2>Total height is: ${addedCharactersHeight} cm <h2/>`;
+    const totalHeightOfSelectedCharactersHeader = ` <h2>Total weight is: ${addedCharactersWeight} kg<h2/>`;
+    const GenderGroupProperties = "Your gender group is :";
+
+    let genderGroup;
+
+    if (maleCharacter > 0 && femaleCharacter > 0) {
+      genderGroup = `<h3>${GenderGroupProperties} MIX<h3/>`;
+    } else if (femaleCharacter > 0) {
+      genderGroup = `<h3>${GenderGroupProperties} FEMAL<h3/>`;
+    } else if (maleCharacter > 0) {
+      genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
+    } else {
+      genderGroup = `<h3>${GenderGroupProperties} ROBOT<h3/>`;
+    }
+    sumOfAddedCharecterProperty.innerHTML = `${totalWeightOfSelectedCharacterHeader}${totalHeightOfSelectedCharactersHeader}${genderGroup}`;
   }
-
-  let addedCharactersWeight = 0;
-  for (let i = 0; i < totalHeightOfSelectedCharacters.length; i++) {
-    addedCharactersWeight += totalHeightOfSelectedCharacters[i];
-  }
-
-  const countTotalgender = gendersOfSelectedCharacters.reduce((gender, num) => {
-    gender[num] = (gender[num] || 0) + 1;
-    return gender;
-  }, {});
-
-  let maleCharacter = countTotalgender.male;
-  let femaleCharacter = countTotalgender.female;
-  console.log(femaleCharacter);
-
-  const totalWeightOfSelectedCharacterHeader = ` <h2>Total height is: ${addedCharactersHeight} cm <h2/>`;
-  const totalHeightOfSelectedCharactersHeader = ` <h2>Total weight is: ${addedCharactersWeight} kg<h2/>`;
-  const GenderGroupProperties = "Your gender group is :";
-
-  let genderGroup;
-
-  if (maleCharacter > 0 && femaleCharacter > 0) {
-    genderGroup = `<h3>${GenderGroupProperties} MIX<h3/>`;
-  } else if (femaleCharacter > 0) {
-    genderGroup = `<h3>${GenderGroupProperties} FEMAL<h3/>`;
-  } else if (maleCharacter > 0) {
-    genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
-  } else {
-    genderGroup = `<h3>${GenderGroupProperties} ROBOT<h3/>`;
-  }
-  sumOfAddedCharecterProperty.innerHTML = `${totalWeightOfSelectedCharacterHeader}${totalHeightOfSelectedCharactersHeader}${genderGroup}`;
+  displayGroupCharacters();
 
   if (getDataFromLocal) {
     const displayDiv = document.createElement("div");
@@ -91,7 +96,8 @@ async function fetchFunction() {
     displayDiv.appendChild(deleteAddedCharacter);
 
     //DELET ITEAM
-    let sureTodelete = (e) => {
+
+    function deleteCharacters(e) {
       var result = confirm("Are you sure to delete?");
       if (result == false) {
         e.preventDefault();
@@ -103,56 +109,55 @@ async function fetchFunction() {
 
         localStorage.removeItem("dataToLocalStorage");
       }
-    };
+    }
 
-    deleteAddedCharacter.addEventListener("click", sureTodelete);
+    deleteAddedCharacter.addEventListener("click", deleteCharacters);
 
     //DISPLAY IMAGE ALL IMAGE
-    const imageElement = document.createElement("img");
-    displayDiv.appendChild(imageElement);
 
-    let imageSource;
-    const arrayOfCharImagesById = {
-      1: {
-        imageSource: "LukeSkywalker.jpeg",
-      },
-      2: {
-        imageSource: "c-3po.jpg",
-      },
-      3: {
-        imageSource: "chawbecca.jpg",
-      },
-      4: {
-        imageSource: "darthvader.jpeg",
-      },
-      5: {
-        imageSource: "leiaorgana.jpg",
-      },
-      6: {
-        imageSource: "berulars.jpg",
-      },
-      7: {
-        imageSource: "kamlabi.jpg",
-      },
-      8: {
-        imageSource: "BiggsDarklighter.jpeg",
-      },
-      9: {
-        imageSource: "obion.jpg",
-      },
-      10: {
-        imageSource: "Oenlars.jpg",
-      },
-    };
+    function imageFunction() {
+      const arrayOfCharImagesById = {
+        1: {
+          imageSource: "LukeSkywalker.jpeg",
+        },
+        2: {
+          imageSource: "c-3po.jpg",
+        },
+        3: {
+          imageSource: "chawbecca.jpg",
+        },
+        4: {
+          imageSource: "darthvader.jpeg",
+        },
+        5: {
+          imageSource: "leiaorgana.jpg",
+        },
+        6: {
+          imageSource: "berulars.jpg",
+        },
+        7: {
+          imageSource: "kamlabi.jpg",
+        },
+        8: {
+          imageSource: "BiggsDarklighter.jpeg",
+        },
+        9: {
+          imageSource: "obion.jpg",
+        },
+        10: {
+          imageSource: "Oenlars.jpg",
+        },
+      };
 
-    function addImageFunction() {
-      for (key in arrayOfCharImagesById) {
-        const newImage = arrayOfCharImagesById[key];
-        console.log(imageSource);
-        console.log(newImage);
-        imageElement.setAttribute("src", "/Image/" + newImage);
+      function addImageFunction() {
+        const imageElement = document.createElement("img");
+        const image = arrayOfCharImagesById[selectedCharacter].imageSource;
+        console.log(image);
+        imageElement.setAttribute("src", "/Image/" + image);
+        displayDiv.appendChild(imageElement);
       }
+      addImageFunction();
     }
-    addImageFunction();
   }
+  imageFunction();
 }
