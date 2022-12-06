@@ -31,14 +31,14 @@ async function fetchFunction() {
   }
 
   function displayGroupCharacters() {
-    const nweheight = JSON.parse(dataFromApi.mass);
-    const nwweight = JSON.parse(dataFromApi.height);
-    const newgender = dataFromApi.gender;
+    const neweHeight = JSON.parse(dataFromApi.mass);
+    const newWeight = JSON.parse(dataFromApi.height);
+    const newGender = dataFromApi.gender;
 
-    // gendersOfSelectedCharacters.push(newgender);
-    totalWeightOfSelectedCharacter.push(nwweight);
-    totalHeightOfSelectedCharacters.push(nweheight);
-    gendersOfSelectedCharacters.push(newgender);
+    // gendersOfSelectedCharacters.push(newGender);
+    totalWeightOfSelectedCharacter.push(newWeight);
+    totalHeightOfSelectedCharacters.push(neweHeight);
+    gendersOfSelectedCharacters.push(newGender);
 
     let addedCharactersHeight = 0;
     for (let i = 0; i < totalWeightOfSelectedCharacter.length; i++) {
@@ -58,21 +58,17 @@ async function fetchFunction() {
       {}
     );
 
-    let maleCharacter = countTotalgender.male;
-    let femaleCharacter = countTotalgender.female;
-    console.log(femaleCharacter);
-
     const totalWeightOfSelectedCharacterHeader = ` <h2>Total height is: ${addedCharactersHeight} cm <h2/>`;
     const totalHeightOfSelectedCharactersHeader = ` <h2>Total weight is: ${addedCharactersWeight} kg<h2/>`;
     const GenderGroupProperties = "Your gender group is :";
 
     let genderGroup;
 
-    if (maleCharacter > 0 && femaleCharacter > 0) {
+    if (countTotalgender.male > 0 && countTotalgender.female > 0) {
       genderGroup = `<h3>${GenderGroupProperties} MIX<h3/>`;
-    } else if (femaleCharacter > 0) {
+    } else if (countTotalgender.female > 0) {
       genderGroup = `<h3>${GenderGroupProperties} FEMAL<h3/>`;
-    } else if (maleCharacter > 0) {
+    } else if (countTotalgender.male > 0) {
       genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
     } else {
       genderGroup = `<h3>${GenderGroupProperties} ROBOT<h3/>`;
@@ -82,18 +78,18 @@ async function fetchFunction() {
   displayGroupCharacters();
 
   if (getDataFromLocal) {
-    const displayDiv = document.createElement("div");
+    const displayCharacters = document.createElement("div");
     // ADD CLASS TO WORK WITH CSS
-    displayDiv.classList.add("displaydiv");
-    displayDiv.innerHTML = `<h4>Name: ${dataFromApi.name}<br>Gender: ${dataFromApi.gender}<br>Height: ${dataFromApi.height}
+    displayCharacters.classList.add("displayCharacters");
+    displayCharacters.innerHTML = `<h4>Name: ${dataFromApi.name}<br>Gender: ${dataFromApi.gender}<br>Height: ${dataFromApi.height}
       <br>Mass: ${dataFromApi.mass}<br>Hair-colo: ${dataFromApi.hair_color} </h4>`;
-    displayNewCharacters.appendChild(displayDiv);
+    displayNewCharacters.appendChild(displayCharacters);
 
     const deleteAddedCharacter = document.createElement("addCharactersButton");
     //ADDING DISPLAY WITH CSS
     deleteAddedCharacter.classList.add("newdeleteAddedCharacter");
     deleteAddedCharacter.innerText = "Delete";
-    displayDiv.appendChild(deleteAddedCharacter);
+    displayCharacters.appendChild(deleteAddedCharacter);
 
     //DELET ITEAM
 
@@ -115,7 +111,6 @@ async function fetchFunction() {
 
     //DISPLAY IMAGE ALL IMAGE
 
-<<<<<<< HEAD
     function imageFunction() {
       const arrayOfCharImagesById = {
         1: {
@@ -155,51 +150,9 @@ async function fetchFunction() {
         const image = arrayOfCharImagesById[selectedCharacter].imageSource;
         console.log(image);
         imageElement.setAttribute("src", "/Image/" + image);
-        displayDiv.appendChild(imageElement);
+        displayCharacters.appendChild(imageElement);
       }
       addImageFunction();
-=======
-    let imageSource;
-    const arrayOfCharImagesById = {
-      1: {
-        imageSource: "LukeSkywalker.jpeg",
-      },
-      2: {
-        imageSource: "c-3po.jpg",
-      },
-      3: {
-        imageSource: "chawbecca.jpg",
-      },
-      4: {
-        imageSource: "darthvader.jpeg",
-      },
-      5: {
-        imageSource: "leiaorgana.jpg",
-      },
-      6: {
-        imageSource: "berulars.jpg",
-      },
-      7: {
-        imageSource: "kamlabi.jpg",
-      },
-      8: {
-        imageSource: "BiggsDarklighter.jpeg",
-      },
-      9: {
-        imageSource: "obion.jpg",
-      },
-      10: {
-        imageSource: "Oenlars.jpg",
-      },
-    };
-
-   function addImageFunction() {
-      const imageElement = document.createElement("img");
-      const image = arrayOfCharImagesById[selectedCharacter].imageSource;
-      console.log(image);
-      imageElement.setAttribute("src", "/Image/" + image);
-      displayDiv.appendChild(imageElement);
->>>>>>> 4064865217ee798ab93f08c71e78b4760945a54c
     }
   }
   imageFunction();

@@ -81,7 +81,7 @@ img {
   align-items: center;
   margin: 5px;
 }
-.displaydiv {
+.displayCharacters {
   background-color: rgba(4, 48, 70, 0.707);
   margin: 50px;
   border-radius: 5px;
@@ -96,75 +96,4 @@ img {
 }
 .newdeletbtn:hover {
   background-color: rgba(194, 39, 39, 0.7);
-}
-<<<<<<< HEAD
-/* 
-.maindiv{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    height: auto;
-    margin-top: 5%;
-    background-color: rgba(142, 152, 156, 0.644);
-    border: 1px solid rgb(95, 91, 91);
-    border-radius: 20px;
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-    font-size: 1.5rem;
-    text-align: center;
-    box-sizing: border-box;
-    
-
-
-}
-#charecter-of-movies {
-    height: 30px;
-    width: 200px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 254, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-}
-#kar2 {
-    height: 30px;
-    width: 200px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 254, 0.397);
-    box-shadow: 7px 7px  6px 6px rgb(60, 61, 60);
-    margin: 45px;
-}
-
-
-=======
->>>>>>> Arvids-branch
-
-.newdeleteAddedCharacter {
-  color: rgb(191, 13, 13);
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 992px) {
-  .display-new-character {
-    width: 500px;
-    display: block;
-  }
-
-  .button-of-summary {
-    display: block;
-    margin: auto;
-    width: 50%;
-  }
-  .mainimg {
-    width: 700px;
-    height: 1000px;
-  }
-  .displaydiv {
-    width: 100%;
-    margin-left: 30%;
-  }
-  #logoImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
