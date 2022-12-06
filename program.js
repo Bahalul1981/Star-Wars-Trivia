@@ -31,13 +31,13 @@ async function fetchFunction() {
     alert("You did not choose any character.Please choose a character.");
   }
 
-  const nweheight = JSON.parse(dataFromApi.mass);
-  const nwweight = JSON.parse(dataFromApi.height);
-  const newgender = dataFromApi.gender;
+  const newHeight = JSON.parse(dataFromApi.mass);
+  const newWeight = JSON.parse(dataFromApi.height);
+  const newGender = dataFromApi.gender;
 
-  totalWeightOfSelectedCharacter.push(nwweight);
-  totalHeightOfSelectedCharacters.push(nweheight);
-  gendersOfSelectedCharacters.push(newgender);
+  totalWeightOfSelectedCharacter.push(newWeight);
+  totalHeightOfSelectedCharacters.push(newHeight);
+  gendersOfSelectedCharacters.push(newGender);
 
   let addedCharactersHeight = 0;
   for (let i = 0; i < totalWeightOfSelectedCharacter.length; i++) {
@@ -54,21 +54,17 @@ async function fetchFunction() {
     return gender;
   }, {});
 
-  let maleCharacter = countTotalgender.male;
-  let femaleCharacter = countTotalgender.female;
-  console.log(femaleCharacter);
-
   const totalWeightOfSelectedCharacterHeader = ` <h2>Total height is: ${addedCharactersHeight} cm <h2/>`;
   const totalHeightOfSelectedCharactersHeader = ` <h2>Total weight is: ${addedCharactersWeight} kg<h2/>`;
   const GenderGroupProperties = "Your gender group is :";
 
   let genderGroup;
 
-  if (maleCharacter > 0 && femaleCharacter > 0) {
+  if (countTotalgender.male > 0 && countTotalgender.female > 0) {
     genderGroup = `<h3>${GenderGroupProperties} MIX<h3/>`;
-  } else if (femaleCharacter > 0) {
+  } else if (countTotalgender.female > 0) {
     genderGroup = `<h3>${GenderGroupProperties} FEMAL<h3/>`;
-  } else if (maleCharacter > 0) {
+  } else if (countTotalgender.male > 0) {
     genderGroup = `<h3>${GenderGroupProperties} MALE<h3/>`;
   } else {
     genderGroup = `<h3>${GenderGroupProperties} ROBOT<h3/>`;
