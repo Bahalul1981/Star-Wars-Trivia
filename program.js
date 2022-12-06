@@ -108,10 +108,7 @@ async function fetchFunction() {
     deleteAddedCharacter.addEventListener("click", sureTodelete);
 
     //DISPLAY IMAGE ALL IMAGE
-    const imageElement = document.createElement("img");
-    displayDiv.appendChild(imageElement);
 
-    let imageSource;
     const arrayOfCharImagesById = {
       1: {
         imageSource: "LukeSkywalker.jpeg",
@@ -146,50 +143,12 @@ async function fetchFunction() {
     };
 
     function addImageFunction() {
-      for (key in arrayOfCharImagesById) {
-        const newImage = arrayOfCharImagesById[key];
-        console.log(imageSource);
-        console.log(newImage);
-        imageElement.setAttribute("src", "/Image/" + newImage);
-      }
+      const imageElement = document.createElement("img");
+      const image = arrayOfCharImagesById[selectedCharacter].imageSource;
+      console.log(image);
+      imageElement.setAttribute("src", "/Image/" + image);
+      displayDiv.appendChild(imageElement);
     }
     addImageFunction();
-
-    // arrayOfCharImagesById.forEach((newelement) => {
-    //   selectedCharacter == newelement.characterId;
-    // });
-
-    // if (selectedCharacter == 1) {
-    //   imageSource = "LukeSkywalker.jpeg";
-    // }
-
-    // if (selectedCharacter == 2) {
-    //   imageSource = "c-3po.jpg";
-    // }
-
-    // if (selectedCharacter == 3) {
-    //   imageSource = "chawbecca.jpg";
-    // }
-    // if (selectedCharacter == 4) {
-    //   imageSource = "darthvader.jpeg";
-    // }
-    // if (selectedCharacter == 5) {
-    //   imageSource = "leiaorgana.jpg";
-    // }
-    // if (selectedCharacter == 6) {
-    //   imageSource = "berulars.jpg";
-    // }
-    // if (selectedCharacter == 7) {
-    //   imageSource = "kamlabi.jpg";
-    // }
-    // if (selectedCharacter == 8) {
-    //   imageSource = "BiggsDarklighter.jpeg";
-    // }
-    // if (selectedCharacter == 9) {
-    //   imageSource = "obion.jpg";
-    // }
-    // if (selectedCharacter == 10) {
-    //   imageSource = "Oenlars.jpg";
-    // }
   }
 }
