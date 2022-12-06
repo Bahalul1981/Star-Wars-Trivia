@@ -145,13 +145,12 @@ async function fetchFunction() {
       },
     };
 
-    function addImageFunction() {
-      for (key in arrayOfCharImagesById) {
-        const newImage = arrayOfCharImagesById[key];
-        console.log(imageSource);
-        console.log(newImage);
-        imageElement.setAttribute("src", "/Image/" + newImage);
-      }
+   function addImageFunction() {
+      const imageElement = document.createElement("img");
+      const image = arrayOfCharImagesById[selectedCharacter].imageSource;
+      console.log(image);
+      imageElement.setAttribute("src", "/Image/" + image);
+      displayDiv.appendChild(imageElement);
     }
     addImageFunction();
   }
