@@ -4,8 +4,6 @@ const sumOfAddedCharecterProperty = document.querySelector(
   ".sum-of-all-characters"
 );
 
-// TOTAL HEIGHT AND WAIGHT
-
 const totalHeightOfSelectedCharacters = [];
 const totalWeightOfSelectedCharacter = [];
 const gendersOfSelectedCharacters = [];
@@ -80,7 +78,7 @@ async function fetchFunction() {
 
   if (getDataFromLocal) {
     const displayDiv = document.createElement("div");
-    //ADDING DISPLAY WITH CSS
+    // ADD CLASS TO WORK WITH CSS
     displayDiv.classList.add("displaydiv");
     displayDiv.innerHTML = `<h4>Name: ${dataFromApi.name}<br>Gender: ${dataFromApi.gender}<br>Height: ${dataFromApi.height}
       <br>Mass: ${dataFromApi.mass}<br>Hair-colo: ${dataFromApi.hair_color} </h4>`;
@@ -116,43 +114,33 @@ async function fetchFunction() {
     let imageSource;
     const arrayOfCharImagesById = {
       1: {
-        characterId: 1,
         imageSource: "LukeSkywalker.jpeg",
       },
       2: {
-        characterId: 2,
         imageSource: "c-3po.jpg",
       },
       3: {
-        characterId: 3,
         imageSource: "chawbecca.jpg",
       },
       4: {
-        characterId: 4,
         imageSource: "darthvader.jpeg",
       },
       5: {
-        characterId: 5,
         imageSource: "leiaorgana.jpg",
       },
       6: {
-        characterId: 6,
         imageSource: "berulars.jpg",
       },
       7: {
-        characterId: 7,
         imageSource: "kamlabi.jpg",
       },
       8: {
-        characterId: 8,
         imageSource: "BiggsDarklighter.jpeg",
       },
       9: {
-        characterId: 9,
         imageSource: "obion.jpg",
       },
       10: {
-        characterId: 10,
         imageSource: "Oenlars.jpg",
       },
     };
